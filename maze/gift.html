@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadeau</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/brands.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/solid.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Courier Prime", monospace;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .main-container {
+            max-width: 1024px;
+            margin: auto;
+        }
+
+
+        .gift-container {
+            position: relative;
+            cursor: pointer;
+            max-width: 400px;
+        }
+
+        .gift-container>img.gift {
+            position: absolute;
+            left: 0;
+            opacity: 0;
+        }
+
+        .gift-container.clicked>img.gift {
+            opacity: 1;
+            transition: 3s;
+        }
+
+        .gift-container>div.explication {
+            opacity: 0;
+        }
+
+        .gift-container.clicked>div.explication {
+            opacity: 1;
+            transition: 3s;
+        }
+
+        .gift-container>.gift-box {
+            opacity: 1;
+        }
+
+        .gift-container.clicked>.gift-box {
+            opacity: 0;
+            transition: 2s;
+        }
+
+        .fa-heart {
+            color: red;
+        }
+
+        .verse {
+            font-style: italic;
+        }
+
+        #gift-code {
+            font-weight: bold;
+        }
+
+        .hint-2{
+            opacity: 0;
+            transition: 2s;
+        }
+        .hint-2.clicked{
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <p>Joyeux anniversaire ma Mitia <i class="fa fa-heart"></i>!<br /><br />
+            24 ans aujourd'hui, ça fait de cette journée une journée spéciale.<br/>
+            Je te souhaite plein de bonheur dans ta vie et de la réussite.<br/>
+            Cette année n'a pas été des plus faciles, il y a eu beaucoup d'épreuves, mais tu es passé à travers grâce à
+            l'aide de Dieu qui ne t'abandonne pas.<br/>
+            Et tu en ressors fortifiée dans ta foi et dans ta confiance en toi et en Dieu qui nous guide.<br/>
+            Je suis fier de toi.<br/>
+            Le meilleur reste à venir, et je te souhaite que cette année supplémentaire soit pleine de joie, de
+            rigolades et de moments mémorables.<br/><br/>
+
+            Je me réjouis que tu fasses toujours partie de ma vie, et je rends grâce à Dieu pour cela.<br/>
+            Merci pour ta présence, merci pour ta tolérance.<br/>
+            Merci pour ton écoute, merci pour ta joie.<br/>
+            Merci de faire de moi une meilleure personne.<br/>
+            Hâte de voir les aventures qui nous attendent encore cette année et pour toutes les années à venir.<br/><br/>
+
+            L'avenir nous est inconnu mais je crois que cette parole que Dieu a adressé à son peuple à un moment de
+            grand doute, nous est aussi adressé aujourd'hui :<br/>
+            <span class="verse">"Ne crains rien, car je suis avec toi ; Ne promène pas des regards inquiets, car je suis ton Dieu ; Je te
+            fortifie, je viens à ton secours, Je te soutiens de ma droite triomphante."</span>  Esaie 41:10.<br/><br/>
+
+            Encore un joyeux anniversaire ma puce.<br/>
+            J'espère que tu vas passer une excellente journée.<br/>
+            24 millions de calins.<br/>
+            Je t'aime ma puce <i class="fa fa-heart"></i>.<br/>
+
+<!--
+            Que cette journée soit une journée de bonheur et de joie.<br />
+            23 ans que tu rayonnes comme un rayon de soleil. <br />
+            23 années remplies de moments mémorables, et je n'en doute pas que cette année supplémentaire sera remplie
+            de moments de bonheurs, de rigolades et de restos.<br />
+            Chaque nouvelle année est une nouvelle aventure qui commence,<br />
+            et n'oublie pas de te confier en Dieu,<br />
+            de remettre entre Ses mains tes projets, tes hésitations, tes défis. Il t'accompagnera chaque jour.<br />
+            Dans les moments de doute, Il te soufflera la bonne chose à faire, <br />
+            dans les moments de tristesse, il te consolera, <br />
+            dans les moments de joie, Il la démultipliera.<br /><br />
+            Comme Dieu nous dit dans Esaie 41:10 <span class="verse">"N'aie pas peur, je suis avec toi. Ne regarde pas
+                autour de toi avec inquiétude. Oui, ton Dieu, c’est moi. Je te rends fort, je viens à ton secours et je
+                te protège avec ma main puissante et victorieuse."</span>,
+            regarde toujours à Lui et tu sauras où aller. <br /><br />
+            Je te souhaite plein de bonheur et de toujours rester attaché à notre Seigneur.<br /><br />
+            Et je suis là également :). Je suis heureux de t'avoir dans ma vie, et même si je ne suis pas bon à te le
+            montrer tu es la meilleure chose qui me soit arrivé. Et je me réjouis de tous les bons moments qui nous
+            attendent.<br />
+            Et je suis désolé pour nos disputes et pour toutes les fois que je t'ai déçue.<br /><br />
+            Encore un joyeux anniversaire!!<br />
+            23 milles enormes bisous et calins.<br />
+            Je t'aime de tout mon coeur <i class="fa fa-heart"></i>.<br />
+            -->
+        </p>
+        <p>Bon, ce n'est pas tout, j'imagine que tu voudrais savoir ce qu'il y a dans ce paquet : </p>
+        <div id="gift-container" class="gift-container" onclick="showGift()">
+            <img class="gift-box" src="assets/gift.png" />
+            <img class="gift" src="assets/unknown.png" />
+            <div class="explication">Oh nooon, le contenu a disparu <img src="assets/perso-shocked.gif"/>!<br/>
+                Ne l'aurais-tu pas déjà ouvert pendant que j'avais le dos tourné?<br>
+                Heureusement que j'ai ce code qui te permets de debloquer un cadeau mystère ^_^ : <br /><span
+                    id="gift-code"></span></div>
+        </div>
+        <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            hint : clique sur le cadeau<br/>
+            <span class="hint-2">hint 2 : tape le code dans cette <a href="gift-list.html">page</a></span>
+
+        </p>
+    </div>
+    <script>
+        showGift = () => {
+            var container = document.getElementById('gift-container');
+            container.classList.add('clicked');
+            var hints = document.getElementsByClassName('hint-2');
+            hints[0].classList.add('clicked');
+            var code = "";
+            for (var i of [0, 1, 2, 3]) {
+                code = code + Math.floor(Math.random() * 10);
+                if (i != 3) {
+                    code = code + "-";
+                }
+            }
+            var giftCode = document.getElementById('gift-code');
+            giftCode.innerHTML = code;
+
+            showGift = () => {};
+        }
+    </script>
+</body>
+
+</html>
