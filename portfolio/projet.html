@@ -209,7 +209,7 @@
                 const dx = firstLeft - last.left;
                 const dy = firstTop - last.top;
 
-                if (first.left <= 0){
+                if (isResetAll && first.left <= 0){
                     // INVERT
                     card.style.transition = "none";
                     card.style.transform = `scale(0)`;
