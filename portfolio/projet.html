@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --cols: 3;
+            --row: 250px;
+            --gap: 16px;
+        }
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(var(--cols), 1fr);
+            grid-auto-rows: var(--row);
+            gap: var(--gap);
+        }
+
+        .item {
+            border-radius: 16px;
+            background-color: #bdbdbd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            opacity: 1;
+            will-change: transform, opacity;
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 150, 255, 0);
+            /* couleur initiale transparente */
+            transition: background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .item:hover {
+            transform: scale(1.01);
+        }
+
+        .item:hover::after {
+            background: var(--overlay, rgba(0, 150, 255, 0.35));
+            /* filtre bleu */
+        }
+
+        .item--wide {
+            grid-column: span 2;
+        }
+
+        .item--tall {
+            grid-row: span 2;
+        }
+
+        .item--big {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .filter-btn{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo"><img src="assets/logo.png"></div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+            <nav class="menu" id="menu">
+                <a href="#projects-section">Projets</a>
+                <a href="#about-section">A propos</a>
+                <a href="#">CV</a>
+                <a href="#contact-section" class="btn-primary">Contactez-moi</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="container hero-project">
+        <div class="hero-project-text">
+            <h1>Citation belle et inspirante à mettre ici</h1>
+            <p>Et on peut meme se permettre de mettre un sous-titre ici</p>
+        </div>
+
+        <div class="hero-project-img">
+            <img src="https://picsum.photos/475/250" alt="illustration">
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="container projects" id="projects-section">
+        <div class="menu">
+            <a class="filter-btn" data-filter="all">Tous</a>
+            <a class="filter-btn" data-filter="branding">Branding</a>
+            <a class="filter-btn" data-filter="print">Print design</a>
+            <a class="filter-btn" data-filter="digital">Digital design</a>
+            <a class="filter-btn" data-filter="videos">Videos</a>
+        </div>
+    </section>
+
+    <section class="container bento" id="bento">
+        <div class="item item--big" style="--overlay: rgba(255, 150, 0, 0.35)" data-category="branding">
+        </div>
+
+        <div class="item" data-category="print">
+        </div>
+
+        <div class="item item--tall" data-category="videos">
+        </div>
+
+        <div class="item" data-category="digital">
+        </div>
+
+        <div class="item" data-category="digital">
+        </div>
+
+        <div class="item item--wide" data-category="branding">
+        </div>
+
+        <div class="item" data-category="print">
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="container footer">
+            <div class="logo"><img src="assets/logo.png"></div>
+            <p>(c) <span id="cgu-year"></span>. Tous droits réservés </p>
+        </div>
+    </footer>
+
+    <script> //BENTO
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener("click", () => {
+                animateFilter(button.dataset.filter);
+            });
+        });
+        var grid = document.getElementById('bento');
+        function animateFilter(filter) {
+            const defaultLeft = grid.getBoundingClientRect().left;
+            const defaultTop = grid.getBoundingClientRect().top;
+            const cards = [...grid.children];
+            const isResetAll = filter === "all";
+
+            // FIRST
+            const firstRects = new Map();
+
+            cards.forEach(card => {
+                firstRects.set(card, card.getBoundingClientRect());
+            });
+
+            // APPLY FILTER
+            cards.forEach(card => {
+                const category = card.dataset.category;
+
+                if (isResetAll || category === filter) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+            
+
+            // visible cards only
+            const visibleCards = cards.filter(
+                card => !card.classList.contains("hidden")
+            );
+
+            // LAST
+            visibleCards.forEach(card => {
+                const first = firstRects.get(card);
+                const last = card.getBoundingClientRect();
+
+                const firstLeft = first.left <= 0 ? defaultLeft : first.left;
+                const firstTop = first.left <= 0 ? defaultTop : first.top;
+
+                const dx = firstLeft - last.left;
+                const dy = firstTop - last.top;
+
+                if (first.left <= 0){
+                    // INVERT
+                    card.style.transition = "none";
+                    card.style.transform = `scale(0)`;
+                }
+                else{
+                    // INVERT
+                    card.style.transition = "none";
+                    card.style.transform = `translate(${dx}px, ${dy}px)`;
+                }
+                
+            });
+
+            // force reflow
+            grid.offsetHeight;
+
+            // PLAY
+            visibleCards.forEach(card => {
+                card.style.transition =
+                    "transform 450ms cubic-bezier(.2,.8,.2,1)";
+
+                card.style.transform = "";
+            });
+        }
+    </script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+
+        let index = 0;
+
+        function moveSlide(direction) {
+            const track = document.getElementById('track');
+            const cards = document.querySelectorAll('.card');
+            const visible = 3;
+            const total = cards.length;
+
+            index += direction;
+
+            if (index < 0) index = total - visible;
+            if (index > total - visible) index = 0;
+
+            const width = cards[0].offsetWidth + 20;
+            track.style.transform = `translateX(-${index * width}px)`;
+        }
+
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+
+                var isOpen = header.classList.contains('open');
+
+                if (isOpen) {
+                    // FERMETURE
+                    content.style.height = content.scrollHeight + "px";
+
+                    requestAnimationFrame(() => {
+                        content.style.height = "0px";
+                    });
+                    header.classList.remove('open');
+
+                } else {
+                    // OUVERTURE
+                    content.style.height = content.scrollHeight + "px";
+
+                    content.addEventListener("transitionend", function handler() {
+                        content.style.height = "auto"; // permet contenu dynamique
+                        content.removeEventListener("transitionend", handler);
+                    });
+                    header.classList.add('open');
+                }
+
+            });
+        });
+        document.getElementById('cgu-year').innerText = (new Date()).getFullYear();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.js"></script>
+    
+</body>
+
+</html>
