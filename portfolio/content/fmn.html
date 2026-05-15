@@ -1,0 +1,140 @@
+<style>
+    .content-bento {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-auto-rows: 250px;
+        gap: var(--gap);
+    }
+
+    .bento-item {
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        grid-column: span 2;
+    }
+    
+    .bento-item-img-background {
+        background-image: var(--bg-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .bento-item--one-row {
+        grid-column: span 10;
+    }
+
+    .bento-item-2 {
+        grid-column: span 5;
+    }
+
+    .bento-item--tall {
+        grid-row: span 2;
+    }
+
+    .bento-item--large {
+        grid-column: span 4;
+    }
+
+    .bento-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .bento-color {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0px;
+    }
+
+    .color-palette {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 14px;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+    }
+
+    .centered-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+    }
+</style>
+<section class="content-description">
+    <h2>Follow my Name</h2>
+    <div class="description">
+        <p>Vasy là Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
+            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
+            reiciendis quia sapiente, voluptatum voluptates at.</p>
+    </div>
+</section>
+<section class="content">
+    <section class="container content-bento">
+        <div class="bento-item bento-item--one-row bento-item--tall bento-item-img-background"
+            style="--bg-url:url(assets/fmn/banner.jpg)">
+            <img src="assets/fmn/logo-blanc.svg" style="height: auto;width: 50%;"/>
+        </div>
+        <div class="bento-item bento-item--tall bento-color">
+            <div class="color-palette" style="background-color: #571216;">
+
+                <p style="color:#F7DDBC">#571216</p>
+            </div>
+            <p>Rouge foncé</p>
+        </div>
+
+        <div class="bento-item bento-item--tall bento-color">
+            <div class="color-palette" style="background-color: #F7DDBC;">
+
+                <p style="color:#571216">#F7DDBC</p>
+            </div>
+            <p>Beige</p>
+        </div>
+
+        <div class="bento-item bento-color">
+            <div class="color-palette" style="background-color: #A9563A;">
+
+                <p style="color:#F7DDBC">#A9563A</p>
+            </div>
+            <p>Abricot</p>
+        </div>
+
+        <div class="bento-item bento-item--tall bento-item--large bento-item-img-background"
+            style="--bg-url:url(assets/fmn/alternative.jpg)">
+            <img src="assets/fmn/logo-alternatif.svg" style="height: auto;width: 50%;"/>
+        </div>
+
+        <div class="bento-item bento-color">
+            <div class="color-palette" style="background-color: #666120;">
+
+                <p style="color:#571216">#666120</p>
+            </div>
+            <p>Vert</p>
+        </div>
+
+        <div class="bento-item bento-item-2">
+            <img src="assets/fmn/typo.jpg" />
+        </div>
+
+        <div class="bento-item bento-item-2" style="background-color: #F7DDBC;">
+            <img src="assets/fmn/logo-vert.svg" style="width: 65%;object-fit: contain;" />
+        </div>
+
+        <div class="bento-item bento-item--one-row bento-item-img-background"
+            style="--bg-url:url(assets/fmn/visual.jpg)">
+            <img src="assets/fmn/logo-beige.svg"  style="height: auto;width: 50%;"/>
+        </div>
+
+    </section>
+</section>

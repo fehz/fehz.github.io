@@ -1,0 +1,48 @@
+<style>
+    .content-flex-col {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+    }
+
+    .content-flex-row {
+        display: flex;
+        gap: var(--gap);
+    }
+
+    .flex-item {
+        border-radius: 16px;
+    }
+
+    .flex-item img {
+        width: 100%;
+    }
+</style>
+<section class="content-description">
+    <h2>Newsletter PSE</h2>
+    <div class="description">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
+            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
+            reiciendis quia sapiente, voluptatum voluptates at.</p>
+    </div>
+</section>
+<section class="content">
+    <section class="container content-flex-col">
+        <div class="flex-item">
+            <img src="assets/sncf/pse-newsletter/banner.jpg" />
+        </div>
+        <div class="content-flex-row">
+            <div class="content-flex-col" style="flex:3">
+                <div class="flex-item">
+                    <img src="assets/sncf/pse-newsletter/mockup.jpg" />
+                </div>
+                <div class="flex-item">
+                    <img src="assets/sncf/pse-newsletter/chart.jpg" />
+                </div>
+            </div>
+            <div class="flex-item" style="flex:2">
+                <img src="assets/sncf/pse-newsletter/full-newsletter.jpg" />
+            </div>
+        </div>
+    </section>
+</section>

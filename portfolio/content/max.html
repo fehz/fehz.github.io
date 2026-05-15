@@ -1,0 +1,78 @@
+<style>
+    .content-bento {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: var(--row);
+        gap: var(--gap);
+    }
+
+    .bento-item {
+        cursor: pointer;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        opacity: 1;
+        will-change: transform, opacity;
+        grid-column: span 2;
+    }
+
+    .bento-item--one-row {
+        grid-column: span 6;
+    }
+
+    .bento-item-2 {
+        grid-column: span 3;
+    }
+
+    .bento-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .color-palette {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 14px;
+    }
+
+    .centered-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .max-content {
+        background-image: url('assets/max/banner.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: auto;
+    }
+    .empty-section{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<section class="content-description">
+    <h2>Title</h2>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
+        consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
+        reiciendis quia sapiente, voluptatum voluptates at.</p>
+</section>
+<section class="content max-content">
+    <section class="empty-section">
+
+    </section>
+    <section>
+        <div style="background-color: Red; width: 100%; height: 50vh">
+    </section>
+</section>

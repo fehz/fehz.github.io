@@ -1,0 +1,54 @@
+<style>
+    .content-bento {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: var(--row);
+        gap: var(--gap);
+    }
+
+    .bento-item {
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .bento-item--one-row {
+        grid-column: span 3;
+    }
+
+    .bento-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+</style>
+<section class="content-description">
+    <h2>Affichage CHL</h2>
+    <div class="description">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
+            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
+            reiciendis quia sapiente, voluptatum voluptates at.</p>
+    </div>
+</section>
+<section class="content">
+    <section class="container content-bento">
+        <div class="bento-item bento-item--one-row">
+            <img src="assets/sncf/chl/banner.jpg" />
+        </div>
+         <div class="bento-item">
+            <img src="assets/sncf/chl/pole-comm-chl.jpg" />
+        </div>
+         <div class="bento-item">
+            <img src="assets/sncf/chl/pole-secu-chl.jpg" />
+        </div>
+         <div class="bento-item">
+            <img src="assets/sncf/chl/pole-dev-chl.jpg" />
+        </div>
+
+    </section>
+</section>

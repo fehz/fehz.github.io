@@ -1,0 +1,116 @@
+<style>
+    .content-bento {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: var(--row);
+        gap: var(--gap);
+    }
+
+    .bento-item {
+        cursor: pointer;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        opacity: 1;
+        will-change: transform, opacity;
+        grid-column: span 2;
+    }
+
+    .bento-item--one-row {
+        grid-column: span 6;
+    }
+
+    .bento-item--tall{
+        grid-row: span 2;
+    }
+    .bento-item-2 {
+        grid-column: span 3;
+    }
+
+    .bento-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .color-palette {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 14px;
+    }
+
+    .centered-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+    }
+</style>
+<section class="content-description">
+    <h2>Max</h2>
+    <div class="description">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
+            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
+            reiciendis quia sapiente, voluptatum voluptates at.</p>
+    </div>
+</section>
+<section class="content">
+    <section class="container content-bento">
+        <div class="bento-item bento-item--one-row bento-item--tall">
+            <img src="assets/max/banner-2.jpg" />
+        </div>
+        <div class="bento-item color-palette" style="background-color: #161A4D;">
+            <p style="color:#D4A5E3">Bleu foncé</p>
+            <p style="color:#DAE63D">#161A4D</p>
+        </div>
+
+        <div class="bento-item color-palette" style="background-color: #D4A5E3;">
+            <p style="color:#161A4D">Lavande pastel</p>
+            <p style="color:#161A4D">#D4A5E3</p>
+        </div>
+
+        <div class="bento-item color-palette" style="background-color: #DAE63D;">
+            <p style="color:#161A4D">Jaune vif</p>
+            <p style="color:#D4A5E3;">#DAE63D</p>
+        </div>
+
+        <div class="bento-item bento-item-2">
+            <img src="assets/max/sketch.png" style="object-fit: contain; object-position: left;" />
+        </div>
+
+        <div class="bento-item bento-item-2">
+            <img src="assets/max/concept.png" style="object-fit: contain; object-position: right;" />
+        </div>
+
+        <div class="bento-item" style="background-color: #161A4D;">
+            <img src="assets/max/logo-violet.svg" style="height: 48px; width:auto"/>
+        </div>
+        <div class="bento-item">
+            <img src="assets/max/mockup-icon.jpg" />
+        </div>
+        <div class="bento-item">
+            <img src="assets/max/mockup-sticker.jpg" />
+        </div>
+        <div class="bento-item bento-item--one-row">
+            <img src="assets/max/pattern.png" style="object-fit: contain" />
+        </div>
+        <div class="bento-item bento-item-2 centered-text"
+            style="background-color:#DAE63D">
+            <p style="color:#161A4D;font-family: 'Ubuntu', sans-serif">AaBbCc</p>
+            <p style="color:#D4A5E3;font-family: 'Ubuntu', sans-serif">Ubuntu</p>
+            <p style="color:#161A4D;font-family: 'Ubuntu', sans-serif">123456789&@?</p>
+        </div>
+        <div class="bento-item bento-item-2">
+            <img src="assets/max/mockup-post.jpg" />
+        </div>
+
+
+    </section>
+</section>
