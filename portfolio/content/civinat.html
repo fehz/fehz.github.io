@@ -7,24 +7,57 @@
 
     .flex-item {
         border-radius: 16px;
+        overflow: hidden;
+        line-height: 0;
+        display: grid;
     }
 
     .flex-item img {
         width: 100%;
+        grid-area: 1/1;
+    }
+
+    .flex-item img.fit-img {
+        max-width: 80%;
+        margin: auto;
+        max-height: 70%;
+        width: auto;
+        height: auto;
     }
 </style>
 <section class="content-description">
-    <h2>Civinat</h2>
+    <h3>Civinat</h3>
     <div class="description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
-            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
-            reiciendis quia sapiente, voluptatum voluptates at.</p>
+        <h4>Contexte</h4>
+        <p>Civinat est une start-up qui aide les étrangers dans leur parcours de naturalisation française, notamment
+            pour la préparation à l'entretien en préfecture. Dans le cadre de sa mission pédagogique, la start-up
+            souhaite lancer un podcast dédié à la culture </p>
+        <h4>Objectifs</h4>
+        <p>
+        <ul>
+            <li><strong>Incarner</strong> : Créer une identité visuelle forte pour le podcast sur les plateformes de
+                streaming.</li>
+            <li><strong>Systématiser</strong> : Concevoir un univers déclinable permettant d'identifier rapidement
+                chaque nouvel épisode.</li>
+        </ul>
+        </p>
+        <h4>Direction artistique</h4>
+        <p>L'intention était d'allier les <strong>codes institutionnels</strong> à une <strong>dynamique digitale
+                moderne</strong>. On joue sur des contrastes de couleurs et des typographies bold pour créer un
+            rendez-vous visuel reconnaissable.
+        </p>
+        <h4>Réalisations</h4>
+        <p>
+            Création de l'univers graphique global, conception de la couverture principale (CivinatCast) et déclinaisons
+            des templates pour les épisodes.
+        </p>
     </div>
 </section>
 <section class="content">
     <section class="container content-flex">
         <div class="flex-item">
             <img src="assets/civinat/banner.jpg" />
+            <img src="assets/civinat/logo.png" class="fit-img" />
         </div>
         <div class="flex-item">
             <img src="assets/civinat/mockup.jpg" />

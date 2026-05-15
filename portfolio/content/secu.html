@@ -2,7 +2,7 @@
     .content-bento {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: var(--row);
+        grid-auto-rows: auto;
         gap: var(--gap);
     }
 
@@ -14,6 +14,14 @@
         justify-content: center;
         font-size: 28px;
     }
+    
+    .bento-item-img-background {
+        background-image: var(--bg-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
 
     .bento-item--one-row {
         grid-column: span 2;
@@ -30,31 +38,52 @@
         object-fit: cover;
         display: block;
     }
-
 </style>
 <section class="content-description">
-    <h2>Journal Sécu</h2>
+    <h3>Journal Sécu</h3>
     <div class="description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
-            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
-            reiciendis quia sapiente, voluptatum voluptates at.</p>
+        <h4>Contexte</h4>
+        <p>Conception et mise en page du tout premier "Journal Sécu" pour le pôle sécurité de l'établissement Paris
+            Sud-Est, chez la SNCF Réseau. Ce support de communication interne a été créé pour diffuser les enjeux de
+            sécurité ferroviaire de manière inédite auprès des agents du territoire.</p>
+        <h4>Objectifs</h4>
+        <p>
+        <ul>
+            <li><strong>Valoriser</strong> : Transformer un sujet technique et complexe en un objet éditorial esthétique
+                et moderne.</li>
+            <li><strong>Engager</strong> : Susciter l'intérêt des lecteurs et augmenter le taux de lecture des consignes
+                de sécurité.</li>
+            <li><strong>Pédagogie</strong> : Faciliter la mémorisation des informations essentielles par le biais du
+                design.</li>
+
+        </ul>
+        </p>
+        <h4>Direction artistique</h4>
+        <p>L'intention était de casser les codes du rapport technique pour adopter ceux du <strong>magazine institutionnel dynamique</strong>: mise en pagé aérée, aplats de couleurs vives, rythme visuel (alternance entre grandes photographies et blocs typographiques).
+        </p>
+        <h4>Réalisations</h4>
+        <p>
+           Mise en page intégrale du journal (chemins de fer, maquette, création d'infographies sur-mesure, conception de la rubrique “Jeux” pédagogique).
+        </p>
     </div>
 </section>
 <section class="content">
     <section class="container content-bento">
-        <div class="bento-item bento-item--one-row">
-            <img src="assets/sncf/secu/banner-2.jpg" />
+        <div class="bento-item bento-item--one-row bento-item-img-background"
+            style="--bg-url:url(assets/sncf/secu/banner-2.jpg)">
+            <img src="assets/sncf/secu/logo.svg" style="max-height: 50%;
+    width: auto;" />
         </div>
-         <div class="bento-item">
+        <div class="bento-item">
             <img src="assets/sncf/secu/mockup-1.jpg" />
         </div>
-         <div class="bento-item bento-item--tall">
+        <div class="bento-item bento-item--tall">
             <img src="assets/sncf/secu/mockup-2.jpg" />
         </div>
-         <div class="bento-item">
+        <div class="bento-item">
             <img src="assets/sncf/secu/mockup-3.jpg" />
         </div>
-        
+
 
     </section>
 </section>

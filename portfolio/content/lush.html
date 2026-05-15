@@ -2,7 +2,7 @@
     .content-bento {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: var(--row);
+        grid-auto-rows: 300px auto;
         gap: var(--gap);
     }
 
@@ -15,10 +15,25 @@
         font-size: 28px;
     }
 
+    .bento-item-img-background {
+        background-image: var(--bg-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .bento-item.bento-item-img-background img {
+        height: auto;
+        width: auto;
+        max-width: 80%;
+        max-height: 70%;
+    }
+
     .bento-item--one-row {
         grid-column: span 3;
     }
-    .bento-item--large{
+
+    .bento-item--large {
         grid-column: span 2;
     }
 
@@ -32,28 +47,52 @@
         object-fit: cover;
         display: block;
     }
-
 </style>
 <section class="content-description">
-    <h2>Lush</h2>
+    <h3>Lush</h3>
     <div class="description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
-            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
-            reiciendis quia sapiente, voluptatum voluptates at.</p>
+        <h4>Contexte</h4>
+        <p>Création de l'univers d'un podcast original pour Lush, intitulé “Nu et vrai”. Le projet part d'un constat :
+            Lush privilégie des formules sans conservateurs synthétiques et des produits sans emballage ("nus"). Le
+            podcast transpose cette philosophie de "rupture" à l'audio pour décrypter les dessous de l'industrie
+            cosmétique (greenwashing, ingrédients cachés, normes).</p>
+        <h4>Objectifs</h4>
+        <p>
+        <ul>
+            <li><strong>Incarner l'engagement</strong> : Faire comprendre la philosophie du "nu" comme une transparence
+                radicale, bien au-delà de l'aspect écologique.</li>
+            <li><strong>Éduquer sans moraliser</strong> : Rendre accessibles des sujets complexes avec un ton léger et
+                décalé pour toucher une cible jeune (18-35 ans), urbaine et engagée.</li>
+            <li><strong>Fidéliser</strong> : Créer un rendez-vous interactif et ludique pour renforcer l'attachement à
+                la marque.</li>
+
+        </ul>
+        </p>
+        <h4>Direction artistique</h4>
+        <p>L'intention était de transformer l'engagement écologique de Lush en une <strong>expérience éditoriale
+                immersive</strong>, pour "mettre à nu" les dérives de la cosmétique avec audace et transparence. Le
+            glassmorphism dans le design symbolise bien cette idée du voile qu'on lève.
+        </p>
+        <h4>Réalisations</h4>
+        <p>
+            Conception de l'identité du podcast (ton, ligne éditoriale, positionnement, thématique), création de la
+            pochette principale, design des interfaces d'écoute.
+        </p>
     </div>
 </section>
 <section class="content">
     <section class="container content-bento">
-        <div class="bento-item bento-item--one-row">
-            <img src="assets/lush/banner.jpg" />
+        <div class="bento-item bento-item--one-row bento-item-img-background"
+            style="--bg-url:url(assets/lush/banner.jpg)">
+            <img src="assets/lush/logo.png" />
         </div>
-         <div class="bento-item">
+        <div class="bento-item">
             <img src="assets/lush/mockup-1.jpg" />
         </div>
-         <div class="bento-item bento-item--large">
+        <div class="bento-item bento-item--large">
             <img src="assets/lush/mockup-2.jpg" />
         </div>
-        
+
 
     </section>
 </section>

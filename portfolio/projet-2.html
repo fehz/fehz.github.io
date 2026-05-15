@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --cols: 4;
+            --row: 200px;
+            --gap: 16px;
+        }
+
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(var(--cols), 1fr);
+            grid-auto-rows: var(--row);
+            gap: var(--gap);
+        }
+
+        .item {
+            cursor: pointer;
+            border-radius: 16px;
+            background-color: #bdbdbd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            opacity: 1;
+            will-change: transform, opacity;
+
+        }
+
+        .item-img-background {
+            background-image: var(--bg-url);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .item.item-img-background img {
+            max-width: 80%;
+            height: auto;
+            max-height: 60%;
+
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 150, 255, 0);
+            /* couleur initiale transparente */
+            transition: background 0.3s ease;
+            pointer-events: none;
+        }
+
+        .item:hover {
+            transform: scale(1.01);
+        }
+
+        .item:hover::after {
+            background: var(--overlay, rgba(0, 150, 255, 0.35));
+            /* filtre bleu */
+        }
+
+        .item--wide {
+            grid-column: span 2;
+        }
+
+        .item--tall {
+            grid-row: span 2;
+        }
+
+        .item--one-row {
+            grid-column: span var(--cols);
+            grid-row: span 2;
+        }
+
+        .item--big {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .item--default-size {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .item img {
+            width: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .filter-btn {
+            cursor: pointer;
+        }
+
+        /* Bloque le scroll arrière */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        /* Overlay */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.8);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.35s ease,
+                visibility 0.35s ease;
+
+            z-index: 9999;
+        }
+
+        /* Visible */
+        .popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Popup */
+        .popup-content {
+            width: 100%;
+            height: 100%;
+
+            background: white;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            transform: scale(0.85);
+            opacity: 0;
+
+            transition:
+                transform 0.35s ease,
+                opacity 0.35s ease;
+        }
+
+        /* Animation ouverture */
+        .popup-overlay.show .popup-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Animation fermeture */
+        .popup-overlay.hide .popup-content {
+            transform: scale(0.85);
+            opacity: 0;
+        }
+
+        /* Header fixe */
+        .popup-header {
+            position: sticky;
+            top: 0;
+
+            background: white;
+
+            padding: 15px 20px;
+
+            display: flex;
+            justify-content: flex-end;
+
+
+            z-index: 10;
+
+            flex-shrink: 0;
+        }
+
+        /* Bouton fermer */
+        .close-popup {
+            font-size: 32px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Body scrollable */
+        .popup-body {
+            flex: 1;
+            overflow-y: auto;
+
+            padding: 20px;
+
+            display: flex;
+            gap: 40px;
+        }
+
+        /* Colonnes */
+        .popup-body section {
+            padding: 10px;
+        }
+
+        .popup-body .content {
+            flex: 3;
+        }
+
+        .popup-body .content-description {
+            flex: 1;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-body .content-description .description {
+            overflow: auto;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .projects .filter {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
+            .bento {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .item--wide {
+                grid-column: span 1;
+            }
+
+            .item--tall {
+                grid-row: span 1;
+            }
+
+            .item--one-row {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .item--big {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .popup-body {
+                flex-direction: column;
+            }
+
+            .popup-body .content-description {
+                position: relative;
+            }
+
+            .content-flex .flex-item {
+                width: 100%;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+
+            .bento {
+                grid-template-columns: 1fr;
+            }
+
+            .popup-body {
+                flex-direction: column;
+            }
+
+            .popup-body .content-description {
+                position: relative;
+            }
+
+            .content-bento {
+                grid-template-columns: 1fr !important;
+            }
+
+            .bento-item {
+                grid-column: span 1 !important;
+            }
+
+            .bento-item--one-row {
+                grid-column: span 1 !important;
+            }
+
+            .bento-item--tall {
+                grid-row: span 1 !important;
+            }
+
+            .bento-item--tall-3 {
+                grid-row: span 1 !important;
+            }
+
+            .bento-item-2 {
+                grid-column: span 1 !important;
+            }
+
+            .content-flex-row {
+                flex-direction: column !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo"><img src="assets/logo.svg" height="30"></div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+            <nav class="menu" id="menu">
+                <a href="#projects-section">Projets</a>
+                <a href="#about-section">A propos</a>
+                <a href="#">CV</a>
+                <a href="#contact-section" class="btn-primary">Contactez-moi</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="container hero-project">
+        <div class="hero-project-text">
+            <h1>J'aime comprendre avant de créer, structurer avant de designer, simplifier sans appauvrir.</h1>
+        </div>
+
+        <div class="hero-project-img">
+            <img src="https://picsum.photos/475/250" alt="illustration">
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="container projects" id="projects-section">
+        <h2>Mes projets</h2>
+
+        <div class="filter">
+            <a class="filter-btn" data-filter="all">Tous</a>
+            <a class="filter-btn" data-filter="branding">Branding</a>
+            <a class="filter-btn" data-filter="print">Print design</a>
+            <a class="filter-btn" data-filter="digital">Digital design</a>
+            <a class="filter-btn" data-filter="videos">Videos</a>
+        </div>
+    </section>
+
+    <section class="container bento" id="bento">
+        <div class="item item--big item-img-background" style="--bg-url:url(assets/max/banner-2.jpg)"
+            data-category="branding" data-contenturl="content/max-2.html">
+            <img src="assets/max/logo.svg" style="height: 48px;" />
+        </div>
+
+        <div class="item item-img-background" style="--bg-url:url(assets/sncf/secu/banner-2.jpg)" data-category="print"
+            data-contenturl="content/secu.html">
+            <img src="assets/sncf/secu/logo.svg">
+        </div>
+
+
+        <div class="item item--tall item-img-background" style="--bg-url:url(assets/fmn/banner.jpg)"
+            data-category="branding" data-contenturl="content/fmn.html">
+            <img src="assets/fmn/logo-blanc.svg">
+        </div>
+
+        <div class="item item-img-background" data-category="branding" style="--bg-url:url(assets/sncf/pse/banner.jpg)"
+            data-contenturl="content/pse.html">
+            <img src="assets/sncf/pse/logo-white.png" style="max-height: 100%;" />
+        </div>
+
+        <div class="item item-img-background" style="--bg-url:url(assets/civinat/banner.jpg)" data-category="digital"
+            data-contenturl="content/civinat.html">
+            <img src="assets/civinat/logo.png" />
+        </div>
+
+        <div class="item item--tall item-img-background" style="--bg-url:url(assets/poettery/banner.jpg)"
+            data-category="branding" data-contenturl="content/poettery.html">
+            <img src="assets/poettery/logo.svg" />
+        </div>
+
+        <div class="item item--wide item-img-background" style="--bg-url:url(assets/lush/banner.jpg)"
+            data-category="digital" data-contenturl="content/lush.html">
+            <img src="assets/lush/logo.png" />
+        </div>
+
+        <div class="item item-img-background" style="--bg-url:url(assets/lecture/banner.jpg)" data-category="print"
+            data-contenturl="content/lecture.html">
+            <img src="assets/lecture/logo.svg">
+        </div>
+
+        <div class="item item--big item-img-background" style="--bg-url:url(assets/pco/banner.jpg)"
+            data-category="print" data-contenturl="content/pco.html">
+            <img src="assets/pco/logo.svg" style="height: 196px;">
+        </div>
+
+        <div class="item item--wide item-img-background" style="--bg-url:url(assets/sncf/pse-newsletter/banner.jpg)"
+            data-category="digital" data-contenturl="content/pse-newsletter.html">
+            NEWS LETTER
+        </div>
+
+        <div class="item" data-category="videos" data-contenturl="content/perso.html">
+            PERSO
+        </div>
+
+        <div class="item item-img-background" style="--bg-url:url(assets/sncf/chl/banner.jpg)" data-category="print"
+            data-contenturl="content/affichage-chl.html">
+            <img src="assets/sncf/chl/logo.svg">
+        </div>
+    </section>
+    <section class="container about" id="about-section">
+        <h2>À propos</h2>
+        <div class="content">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eaque eligendi illo quasi odit,
+                laboriosam distinctio quis beatae, perferendis possimus neque dolores deleniti enim facilis sed nesciunt
+                blanditiis inventore repudiandae!
+            </p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">Logiciels <i class="ti ti-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <div>
+                            Figma, Photoshop, VS Code
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Langues <i class="ti ti-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <div>Français, Anglais, Espagnol</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">Technologies <i class="ti ti-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <div>HTML, CSS, JavaScript, React</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container contact" id="contact-section">
+        <h2>Contactez-moi</h2>
+        <div class="content">
+            <div class="text">
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eaque eligendi illo quasi odit,
+                    laboriosam distinctio quis beatae, perferendis possimus neque dolores deleniti enim facilis sed
+                    nesciunt
+                    blanditiis inventore repudiandae!
+
+                </p>
+                <div style="padding:20px"><a href="tel:0606" class="btn-primary">Par telephone</a> &nbsp;<a href="mailto:mail@mail.com" class="btn-primary">Par Mail</a></div>
+
+            </div>
+            <div class="form">
+                <form>
+
+                    <div class="full">
+                        <label>Nom *</label>
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+
+                    <div>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+
+                    <div>
+                        <label>Email *</label>
+                        <input type="email" placeholder="hello@arnaud.design" required>
+                    </div>
+
+                    <div class="full">
+                        <label>Message *</label>
+                        <textarea placeholder="Hello..." required></textarea>
+                    </div>
+
+                    <div class="full">
+                        <button type="submit">Envoyer</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer">
+            <div class="logo"><img src="assets/logo.svg" height="30"></div>
+            <p>(c) <span id="cgu-year"></span>. Tous droits réservés </p>
+        </div>
+    </footer>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <!-- Header fixe -->
+            <div class="popup-header">
+                <span class="close-popup" id="closeBtn">
+                    &times;
+                </span>
+            </div>
+            <!-- Zone scrollable -->
+            <div class="popup-body">
+                Chargement...
+            </div>
+        </div>
+    </div>
+
+
+
+    <script> //BENTO
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener("click", () => {
+                animateFilter(button.dataset.filter);
+            });
+        });
+        var grid = document.getElementById('bento');
+        function animateFilter(filter) {
+            const defaultLeft = grid.getBoundingClientRect().left;
+            const defaultTop = grid.getBoundingClientRect().top;
+            const cards = [...grid.children];
+            const isResetAll = filter === "all";
+
+            // FIRST
+            const firstRects = new Map();
+
+            cards.forEach(card => {
+                firstRects.set(card, card.getBoundingClientRect());
+            });
+
+            // APPLY FILTER
+            cards.forEach(card => {
+                const category = card.dataset.category;
+
+                if (isResetAll || category === filter) {
+                    card.classList.remove("hidden");
+                    if (!isResetAll) {
+                        card.classList.add("item--default-size");
+                    }
+                    else {
+                        card.classList.remove("item--default-size");
+                    }
+                } else {
+                    card.classList.add("hidden");
+                    card.classList.remove("item--default-size");
+                }
+            });
+
+
+            // visible cards only
+            const visibleCards = cards.filter(
+                card => !card.classList.contains("hidden")
+            );
+
+            // LAST
+            visibleCards.forEach(card => {
+                const first = firstRects.get(card);
+                const last = card.getBoundingClientRect();
+
+                const firstLeft = first.left <= 0 ? defaultLeft : first.left;
+                const firstTop = first.left <= 0 ? defaultTop : first.top;
+
+                const dx = firstLeft - last.left;
+                const dy = firstTop - last.top;
+
+                if (isResetAll && first.left <= 0) {
+                    // INVERT
+                    card.style.transition = "none";
+                    card.style.transform = `scale(0)`;
+                }
+                else {
+                    // INVERT
+                    card.style.transition = "none";
+                    card.style.transform = `translate(${dx}px, ${dy}px)`;
+                }
+
+            });
+
+            // force reflow
+            grid.offsetHeight;
+
+            // PLAY
+            visibleCards.forEach(card => {
+                card.style.transition =
+                    "transform 450ms cubic-bezier(.2,.8,.2,1)";
+
+                card.style.transform = "";
+            });
+        }
+    </script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+
+        let index = 0;
+
+        function moveSlide(direction) {
+            const track = document.getElementById('track');
+            const cards = document.querySelectorAll('.card');
+            const visible = 3;
+            const total = cards.length;
+
+            index += direction;
+
+            if (index < 0) index = total - visible;
+            if (index > total - visible) index = 0;
+
+            const width = cards[0].offsetWidth + 20;
+            track.style.transform = `translateX(-${index * width}px)`;
+        }
+
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+
+                var isOpen = header.classList.contains('open');
+
+                if (isOpen) {
+                    // FERMETURE
+                    content.style.height = content.scrollHeight + "px";
+
+                    requestAnimationFrame(() => {
+                        content.style.height = "0px";
+                    });
+                    header.classList.remove('open');
+
+                } else {
+                    // OUVERTURE
+                    content.style.height = content.scrollHeight + "px";
+
+                    content.addEventListener("transitionend", function handler() {
+                        content.style.height = "auto"; // permet contenu dynamique
+                        content.removeEventListener("transitionend", handler);
+                    });
+                    header.classList.add('open');
+                }
+
+            });
+        });
+        document.getElementById('cgu-year').innerText = (new Date()).getFullYear();
+    </script>
+    <script>
+        const openBtns = document.querySelectorAll(".item");
+        const popup = document.getElementById("popup");
+        const closeBtn = document.getElementById("closeBtn");
+        const popupBody = document.querySelector(".popup-body");
+
+        // OUVRIR
+        openBtns.forEach(item => {
+
+            item.addEventListener("click", async () => {
+
+                // bloque scroll arrière
+                document.body.classList.add("no-scroll");
+
+                popup.classList.remove("hide");
+                popup.classList.add("show");
+
+                let url = item.dataset.contenturl || "content/max.html";
+
+                try {
+
+                    const response = await fetch(url);
+                    const html = await response.text();
+
+                    popupBody.innerHTML = html;
+
+                } catch (err) {
+
+                    popupBody.innerHTML = "<p>Erreur de chargement.</p>";
+
+                }
+
+            });
+
+        });
+
+        // FERMER
+        function closePopup() {
+
+            popup.classList.add("hide");
+
+            setTimeout(() => {
+
+                popup.classList.remove("show");
+                popup.classList.remove("hide");
+
+                // réactive le scroll
+                document.body.classList.remove("no-scroll");
+
+            }, 350);
+
+        }
+
+        closeBtn.addEventListener("click", closePopup);
+
+        // fermer en cliquant dehors
+        popup.addEventListener("click", (e) => {
+
+            if (e.target === popup) {
+                closePopup();
+            }
+
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.js"></script>
+
+</body>
+
+</html>

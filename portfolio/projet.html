@@ -51,6 +51,13 @@
             background-position: center;
         }
 
+        .item.item-img-background img {
+            max-width: 80%;
+            height: auto;
+            max-height: 60%;
+
+        }
+
         .hidden {
             display: none;
             opacity: 0;
@@ -99,8 +106,7 @@
         }
 
         .item img {
-            width: 100%;
-            height: 100%;
+            width: auto;
             object-fit: cover;
             display: block;
         }
@@ -222,11 +228,98 @@
             flex: 1;
             position: sticky;
             top: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .popup-body .content-description .description {
             overflow: auto;
-            height: 100%;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .projects .filter {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
+            .bento {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .item--wide {
+                grid-column: span 1;
+            }
+
+            .item--tall {
+                grid-row: span 1;
+            }
+
+            .item--one-row {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .item--big {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .popup-body {
+                flex-direction: column;
+            }
+
+            .popup-body .content-description {
+                position: relative;
+            }
+
+            .content-flex .flex-item {
+                width: 100%;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+
+            .bento {
+                grid-template-columns: 1fr;
+            }
+
+            .popup-body {
+                flex-direction: column;
+            }
+
+            .popup-body .content-description {
+                position: relative;
+            }
+
+            .content-bento {
+                grid-template-columns: 1fr !important;
+            }
+
+            .bento-item {
+                grid-column: span 1 !important;
+            }
+
+            .bento-item--one-row {
+                grid-column: span 1 !important;
+            }
+
+            .bento-item--tall {
+                grid-row: span 1 !important;
+            }
+
+            .bento-item--tall-3 {
+                grid-row: span 1 !important;
+            }
+
+            .bento-item-2 {
+                grid-column: span 1 !important;
+            }
+
+            .content-flex-row {
+                flex-direction: column !important;
+            }
         }
     </style>
 </head>
@@ -235,7 +328,7 @@
 
     <header>
         <div class="container nav">
-            <div class="logo"><img src="assets/logo.png"></div>
+            <div class="logo"><img src="assets/logo.svg" height="30"></div>
 
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
@@ -251,8 +344,7 @@
     <!-- HERO -->
     <section class="container hero-project">
         <div class="hero-project-text">
-            <h1>Citation belle et inspirante à mettre ici</h1>
-            <p>Et on peut meme se permettre de mettre un sous-titre ici</p>
+            <h1>J'aime comprendre avant de créer, structurer avant de designer, simplifier sans appauvrir.</h1>
         </div>
 
         <div class="hero-project-img">
@@ -262,7 +354,7 @@
 
     <!-- PROJECTS -->
     <section class="container projects" id="projects-section">
-        <div class="menu">
+        <div class="filter">
             <a class="filter-btn" data-filter="all">Tous</a>
             <a class="filter-btn" data-filter="branding">Branding</a>
             <a class="filter-btn" data-filter="print">Print design</a>
@@ -272,53 +364,64 @@
     </section>
 
     <section class="container bento" id="bento">
-        <div class="item item--big item-img-background" style="--bg-url:url(assets/max/banner-2.jpg)" data-category="branding" data-contenturl="content/max-2.html">
-            <img src="assets/max/logo.svg" style="height: 48px; width:auto" />
+        <div class="item item--big item-img-background" style="--bg-url:url(assets/max/banner-2.jpg)"
+            data-category="branding" data-contenturl="content/max-2.html">
+            <img src="assets/max/logo.svg" style="height: 48px;" />
         </div>
 
-        <div class="item" data-category="print" data-contenturl="content/secu.html">
-            <img src="assets/sncf/secu/banner.jpg">
-        </div>
-        
-
-        <div class="item item--tall item-img-background" style="--bg-url:url(assets/fmn/banner.jpg)"  data-category="branding" data-contenturl="content/fmn.html">
-            <img src="assets/fmn/logo-blanc.svg" style="height: 60px; width: auto;">
+        <div class="item item-img-background" style="--bg-url:url(assets/sncf/secu/banner-2.jpg)" data-category="print"
+            data-contenturl="content/secu.html">
+            <img src="assets/sncf/secu/logo.svg">
         </div>
 
-        <div class="item item-img-background" data-category="branding" style="--bg-url:url(assets/sncf/pse/banner.jpg)" data-contenturl="content/pse.html">
-            <img src="assets/sncf/pse/logo-white.png" style="height: 200px; width:auto" />
+
+        <div class="item item--tall item-img-background" style="--bg-url:url(assets/fmn/banner.jpg)"
+            data-category="branding" data-contenturl="content/fmn.html">
+            <img src="assets/fmn/logo-blanc.svg">
         </div>
 
-        <div class="item" data-category="digital" data-contenturl="content/civinat.html">
-            <img src="assets/civinat/banner.jpg" />
+        <div class="item item-img-background" data-category="branding" style="--bg-url:url(assets/sncf/pse/banner.jpg)"
+            data-contenturl="content/pse.html">
+            <img src="assets/sncf/pse/logo-white.png" style="max-height: 100%;" />
         </div>
 
-        <div class="item item--tall item-img-background"  style="--bg-url:url(assets/poettery/banner.jpg)"  data-category="branding" data-contenturl="content/poettery.html">
-            <img src="assets/poettery/logo.svg"  style="height: 96px; width:auto"/>
+        <div class="item item-img-background" style="--bg-url:url(assets/civinat/banner.jpg)" data-category="digital"
+            data-contenturl="content/civinat.html">
+            <img src="assets/civinat/logo.png" />
         </div>
 
-        <div class="item item--wide" data-category="digital" data-contenturl="content/lush.html">
-            <img src="assets/lush/banner.jpg" />
+        <div class="item item--tall item-img-background" style="--bg-url:url(assets/poettery/banner.jpg)"
+            data-category="branding" data-contenturl="content/poettery.html">
+            <img src="assets/poettery/logo.svg" />
         </div>
 
-        <div class="item" data-category="print" data-contenturl="content/lecture.html">
-            <img src="assets/lecture/banner.jpg">
+        <div class="item item--wide item-img-background" style="--bg-url:url(assets/lush/banner.jpg)"
+            data-category="digital" data-contenturl="content/lush.html">
+            <img src="assets/lush/logo.png" />
         </div>
 
-        <div class="item item--big" data-category="print" data-contenturl="content/pco.html">
-            <img src="assets/pco/banner.jpg">
+        <div class="item item-img-background" style="--bg-url:url(assets/lecture/banner.jpg)" data-category="print"
+            data-contenturl="content/lecture.html">
+            <img src="assets/lecture/logo.svg">
         </div>
 
-        <div class="item item--wide" data-category="digital" data-contenturl="content/pse-newsletter.html">
-            <img src="assets/sncf/pse-newsletter/banner.jpg">
+        <div class="item item--big item-img-background" style="--bg-url:url(assets/pco/banner.jpg)"
+            data-category="print" data-contenturl="content/pco.html">
+            <img src="assets/pco/logo.svg" style="height: 196px;">
+        </div>
+
+        <div class="item item--wide item-img-background" style="--bg-url:url(assets/sncf/pse-newsletter/banner.jpg)"
+            data-category="digital" data-contenturl="content/pse-newsletter.html">
+            NEWS LETTER
         </div>
 
         <div class="item" data-category="videos" data-contenturl="content/perso.html">
             PERSO
         </div>
 
-        <div class="item" data-category="print" data-contenturl="content/affichage-chl.html">
-            <img src="assets/sncf/chl/banner.jpg">
+        <div class="item item-img-background" style="--bg-url:url(assets/sncf/chl/banner.jpg)" data-category="print"
+            data-contenturl="content/affichage-chl.html">
+            <img src="assets/sncf/chl/logo.svg">
         </div>
 
 
@@ -328,7 +431,7 @@
 
     <footer>
         <div class="container footer">
-            <div class="logo"><img src="assets/logo.png"></div>
+            <div class="logo"><img src="assets/logo.svg" height="30"></div>
             <p>(c) <span id="cgu-year"></span>. Tous droits réservés </p>
         </div>
     </footer>

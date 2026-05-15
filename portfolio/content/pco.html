@@ -2,7 +2,7 @@
     .content-bento {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-auto-rows: var(--row);
+        grid-auto-rows: 300px auto;
         gap: var(--gap);
     }
 
@@ -14,6 +14,20 @@
         justify-content: center;
         font-size: 28px;
         grid-column: span 2;
+    }
+
+    .bento-item-img-background {
+        background-image: var(--bg-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .bento-item.bento-item-img-background img {
+        height: auto;
+        width: auto;
+        max-width: 80%;
+        max-height: 70%;
     }
 
     .bento-item--one-row {
@@ -35,28 +49,57 @@
         object-fit: cover;
         display: block;
     }
-
 </style>
 <section class="content-description">
-    <h2>Série Prière&Co</h2>
+    <h3>Série Prière&Co</h3>
     <div class="description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, reprehenderit labore? Perspiciatis
-            consectetur neque nemo tempora distinctio cumque iure repudiandae eaque vitae, architecto sunt,
-            reiciendis quia sapiente, voluptatum voluptates at.</p>
+        <h4>Contexte</h4>
+        <p>Conception d'un nouveau système de réunions thématiques pour la STK Paris, une association de jeunes
+            chrétiens.</p>
+        <h4>Objectifs</h4>
+        <p>
+        <ul>
+            <li><strong>Clarifier</strong> : Introduire un système de thématiques de façon ludique et mémorable.</li>
+            <li><strong>Engager</strong> : Rendre le participant acteur du programme dès le lancement.</li>
+            <li><strong>Décliner</strong> : Créer une grammaire visuelle (couleurs/icônes) adaptable à tous les supports
+                de communication (Print & Social Media).</li>
+        </ul>
+        </p>
+        <h4>Direction artistique</h4>
+        <p>L'intention était de <strong>désacraliser</strong> des sujets profonds par une esthétique <strong>"Pop &
+                Interactive"</strong> :
+        <ul>
+            <li><strong>Concept</strong> : Le format "jeu de cartes" transforme le programme annuel en un objet tangible
+                et ludique. Le tirage au sort en réunion rend l'expérience participative.</li>
+            <li><strong>Typographies</strong> : Un contraste fort entre la puissance de l'Impact (affirmation) et
+                l'aspect technique/rétro de la Space Mono (clarté des informations).</li>
+            <li><strong>Code</strong> Visuel : Un système "une couleur / une icône" par série pour permettre une
+                identification instantanée sans lecture nécessaire.</li>
+            <li><strong>Esthétique</strong> : Des teintes vibrantes et des formes graphiques généreuses pour capter
+                l'attention et casser l'image parfois trop austère des réunions thématiques.</li>
+
+        </ul>
+        </p>
+        <h4>Réalisations</h4>
+        <p>
+            Set de cartes thématiques, système iconographique et charte graphique déclinable pour les supports digitaux
+            (stories, affiches).
+        </p>
     </div>
 </section>
 <section class="content">
     <section class="container content-bento">
-        <div class="bento-item bento-item--one-row">
-            <img src="assets/pco/banner.jpg" />
+        <div class="bento-item bento-item--one-row bento-item-img-background"
+            style="--bg-url:url(assets/pco/banner.jpg)">
+            <img src="assets/pco/logo.svg" />
         </div>
-         <div class="bento-item bento-item--large">
+        <div class="bento-item bento-item--large">
             <img src="assets/pco/box.jpg" />
         </div>
-         <div class="bento-item">
+        <div class="bento-item">
             <img src="assets/pco/card-verso.jpg" />
         </div>
-         <div class="bento-item bento-item--one-row">
+        <div class="bento-item bento-item--one-row">
             <img src="assets/pco/full-card.jpg" />
         </div>
 

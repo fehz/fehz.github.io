@@ -1,31 +1,44 @@
 <style>
     .content-flex {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: var(--gap);
+        flex-wrap: wrap;
     }
 
     .flex-item {
         border-radius: 16px;
+        overflow: hidden;
+        line-height: 0;
+        width: 48%;
     }
 
     .flex-item img {
         width: 100%;
+        object-fit: cover;
+        height: 100%;
     }
 </style>
 <section class="content-description">
-    <h2>Perso</h2>
+    <h3>Perso</h3>
     <div class="description">
-        <p></p>
+        <p>Cette section est mon <strong>terrain de jeu créatif</strong>. C'est ici que j'expérimente sans contraintes,
+            passant du design
+            digital aux arts plastiques. Ces projets me permettent d'explorer de nouveaux supports, d'affiner mon œil et
+            de nourrir ma pratique quotidienne. C'est un laboratoire libre où je m'exerce pour repousser mes limites
+            graphiques et artistiques.</p>
     </div>
 </section>
 <section class="content">
     <section class="container content-flex">
         <div class="flex-item">
-            <img src="assets/persos/annonce-baby.png" />
+            <img src="assets/persos/annonce-baby.jpg" />
         </div>
         <div class="flex-item">
-            <img src="assets/persos/mockup-tableau-cactus.png" />
+            <img src="assets/persos/mockup-tableau-cactus.jpg" />
+        </div>
+        <div class="flex-item">
+            <img src="assets/persos/wallpaper-ipad.jpg" />
         </div>
     </section>
 </section>
